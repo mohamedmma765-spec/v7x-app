@@ -5,6 +5,7 @@
   "bundledWebRuntime": false,
   "server": {
     "url": "https://v7x.fun/user/login",
+    "allowNavigation": ["v7x.fun"],
     "cleartext": true,
     "androidScheme": "https"
   },
