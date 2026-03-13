@@ -5,7 +5,10 @@
   "bundledWebRuntime": false,
   "server": {
     "url": "https://v7x.fun/user/login",
-    "allowNavigation": ["v7x.fun"],
+    "allowNavigation": [
+      "v7x.fun",
+      "*.v7x.fun"
+    ],
     "cleartext": true,
     "androidScheme": "https"
   },
@@ -21,6 +24,14 @@
       "splashFullScreen": true,
       "splashImmersive": true,
       "fadeDuration": 800
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "dark",
+      "resizeOnFullScreen": true
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
     }
   }
 }
