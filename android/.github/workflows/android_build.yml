@@ -1,0 +1,33 @@
+name: V7X Auto Build
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Build V7X Release
+        run: |
+          chmod +x android/gradlew
+          cd android
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=../v7x-release-key.keystore \
+            -Pandroid.injected.signing.store.password=Mohamed@343427 \
+            -Pandroid.injected.signing.key.alias=v7x-alias \
+            -Pandroid.injected.signing.key.password=Mohamed@343427
+
+      - name: Upload Finished APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: v7x-final-app
+          path: android/app/build/outputs/apk/release/*.apk
