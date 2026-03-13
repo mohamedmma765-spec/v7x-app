@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "279476918922",
+    "firebase_url": "https://m3rfa-a1f19.firebaseio.com",
+    "project_id": "m3rfa-a1f19",
+    "storage_bucket": "m3rfa-a1f19.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279476918922:android:dc8ccef434191fdf99eb73",
+        "android_client_info": {
+          "package_name": "com.v7x.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279476918922-lujmm4qhfs87fam0km3gjtrlds7glgte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-uxr3O_W14QxqGH5lT3sLk5XxOLzLmF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279476918922-2okdk6qvf0qkl9ru7a8akcprvhi3t2bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
