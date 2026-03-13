@@ -21,7 +21,7 @@ jobs:
           chmod +x android/gradlew
           cd android
           ./gradlew assembleRelease \
-            -Pandroid.injected.signing.store.file=../v7x-release-key.keystore \
+            -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/v7x-release-key.keystore \
             -Pandroid.injected.signing.store.password=Mohamed@343427 \
             -Pandroid.injected.signing.key.alias=v7x-alias \
             -Pandroid.injected.signing.key.password=Mohamed@343427
