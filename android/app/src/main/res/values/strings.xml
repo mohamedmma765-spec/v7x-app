@@ -4,4 +4,6 @@
     <string name="title_activity_main">V7X</string>
     <string name="package_name">com.v7x.app</string>
     <string name="custom_url_scheme">com.v7x.app</string>
+    <string name="server_url">https://v7x.fun/user/login</string>
+    <string name="allow_navigation">v7x.fun</string>
 </resources>
