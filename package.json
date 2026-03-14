@@ -10,10 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@capacitor-firebase/analytics": "^8.1.0",
     "@capacitor/android": "^8.2.0",
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.6.0",
     "@capacitor/core": "^8.2.0",
+    "@capacitor/push-notifications": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.1",
     "capacitor-native-biometric": "^4.2.2"
   }
 }

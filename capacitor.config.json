@@ -1,10 +1,11 @@
 {
   "appId": "com.v7x.app",
   "appName": "V7X",
-  "webDir": "www",
+  "webDir": "public",
   "bundledWebRuntime": false,
   "server": {
     "url": "https://v7x.fun/user/login",
+    "overrideUserAgent": "V7X_Android_App_Mobile",
     "allowNavigation": [
       "v7x.fun",
       "*.v7x.fun"
@@ -13,6 +14,11 @@
     "androidScheme": "https"
   },
   "plugins": {
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#020617",
+      "overlaysWebView": false
+    },
     "SplashScreen": {
       "launchShowDuration": 2000,
       "launchAutoHide": true,
