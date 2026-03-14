@@ -19,7 +19,12 @@ public class MainActivity extends BridgeActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // --- 1. إظهار الساعة والبطارية (Status Bar) ---
+        // --- 1. طلب إذن الإشعارات تلقائياً لأندرويد 13 فما فوق ---
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+        }
+
+        // --- 2. إظهار الساعة والبطارية (Status Bar) ---
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -37,17 +42,24 @@ public class MainActivity extends BridgeActivity {
         WebView webView = this.bridge.getWebView();
         
         if (webView != null && swipeRefreshLayout == null) {
-            // --- 2. إعدادات الأداء ومنع الزوم للألعاب ---
+            // --- 3. إعدادات الأداء ومنع الزوم وتصغير العناصر ---
             WebSettings settings = webView.getSettings();
             settings.setJavaScriptEnabled(true);
             settings.setDomStorageEnabled(true);
             settings.setDatabaseEnabled(true);
+            
+            // ضبط البصمة (User Agent) ليتعرف السيرفر أن هذا هو التطبيق
+            settings.setUserAgentString("V7X_Android_App_Mobile");
+
+            // حل مشكلة حجم العناصر الكبير (Scaling)
+            settings.setUseWideViewPort(true);
+            settings.setLoadWithOverviewMode(true);
+
             settings.setSupportZoom(false);
             settings.setBuiltInZoomControls(false);
             settings.setDisplayZoomControls(false);
 
-            // --- 3. إضافة ميزة السحب للتحديث (Native Swipe Refresh) ---
-            // الطريقة الآمنة: نجعل الـ SwipeRefreshLayout هو الأب للـ WebView
+            // --- 4. إضافة ميزة السحب للتحديث (Native Swipe Refresh) ---
             swipeRefreshLayout = new SwipeRefreshLayout(this);
             ViewGroup parent = (ViewGroup) webView.getParent();
             if (parent != null) {
@@ -66,13 +78,22 @@ public class MainActivity extends BridgeActivity {
                 webView.reload();
                 webView.postDelayed(() -> swipeRefreshLayout.setRefreshing(false), 1500);
             });
+
+            // تفعيل السحب فقط عندما تكون الصفحة في الأعلى
+            webView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+                if (webView.getScrollY() == 0) {
+                    swipeRefreshLayout.setEnabled(true);
+                } else {
+                    swipeRefreshLayout.setEnabled(false);
+                }
+            });
             
-            // --- 4. تحميل الرابط ---
+            // --- 5. تحميل الرابط ---
             webView.loadUrl("https://v7x.fun/user/login");
         }
     }
 
-    // --- 5. زر الرجوع الذكي للتنقل داخل المنصة ---
+    // --- 6. زر الرجوع الذكي للتنقل داخل المنصة ---
     @Override
     public void onBackPressed() {
         if (this.bridge.getWebView().canGoBack()) {
