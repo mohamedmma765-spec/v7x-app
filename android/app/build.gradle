@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-// كود إضافي لحل تضارب مكتبات Kotlin ومنع النسخ المكررة
 configurations.all {
     resolutionStrategy {
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
@@ -37,27 +36,27 @@ repositories {
 }
 
 dependencies {
-    // تثبيت نسخة Kotlin الموحدة لضمان عدم حدوث تضارب
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.22"
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
-    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
-    implementation project(':capacitor-android')
     
-    // --- المكتبات المضافة للميزات الجديدة ---
-    // ميزة السحب للتحديث
+    // التعديل الأهم: تحديث مكتبة الـ Splash لنسخة مستقرة
+    implementation "androidx.core:core-splashscreen:1.0.1"
+    
+    // إضافة مكتبات الميزات الجديدة (السحب للتحديث والبصمة)
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    // ميزة التحقق البيومتري (البصمة)
-    implementation "androidx.biometric:biometric:1.1.0"
-    // ---------------------------------------
+    implementation "androidx.biometric:biometric:1.4.0-alpha02"
+
+    implementation project(':capacitor-android')
+    implementation project(':capacitor-cordova-android-plugins')
+    
+    // توحيد نسخ كوتلن لمنع التضارب
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.0"))
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
-    implementation project(':capacitor-cordova-android-plugins')
 }
 
 apply from: 'capacitor.build.gradle'
@@ -68,5 +67,5 @@ try {
         apply plugin: 'com.google.gms.google-services'
     }
 } catch(Exception e) {
-    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+    logger.info("google-services.json not found, google-services plugin not applied.")
 }
