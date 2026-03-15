@@ -10,14 +10,15 @@ configurations.all {
 android {
     namespace "com.v7x.app"
     
-    // رفع الـ compileSdk لـ 35 لحل مشكلة التوافق مع المكتبات الحديثة
+    // خليناها 35 عشان نسكت أخطاء المكتبات الحديثة
     compileSdk 35
     
     defaultConfig {
         applicationId "com.v7x.app"
-        minSdkVersion 22
         
-        // الـ targetSdkVersion يظل 34 لضمان استقرار الإشعارات والسلوك
+        // التعديل هنا: رفعناها لـ 23 عشان مكتبة البصمة تقبل الـ Build
+        minSdkVersion 23
+        
         targetSdkVersion 34
         
         versionCode 3
