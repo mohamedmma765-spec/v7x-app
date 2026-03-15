@@ -28,14 +28,19 @@ public class MainActivity extends BridgeActivity {
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#020617")); // لون الخلفية الداكن
-        window.setNavigationBarColor(Color.parseColor("#020617")); // تلوين شريط الأزرار السفلي
+        
+        // لون خلفية الأشرطة (Status Bar & Navigation Bar)
+        int navColor = Color.parseColor("#020617");
+        window.setStatusBarColor(navColor); 
+        window.setNavigationBarColor(navColor); 
 
-        // --- [ السحر هنا لإظهار الأزرار السوداء ] ---
+        // --- [ السحر لإظهار الأزرار باللون الأبيض ] ---
         View decorView = window.getDecorView();
         WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, decorView);
-        controller.setAppearanceLightNavigationBars(false); // تجعل أزرار التنقل بيضاء/فاتحة
-        controller.setAppearanceLightStatusBars(false); // تجعل أيقونات الساعة والبطارية بيضاء
+        
+        // false تعني أيقونات بيضاء (لأن الخلفية غامقة)
+        controller.setAppearanceLightNavigationBars(false); 
+        controller.setAppearanceLightStatusBars(false); 
         
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
     }

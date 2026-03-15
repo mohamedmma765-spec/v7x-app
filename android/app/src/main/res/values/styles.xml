@@ -15,6 +15,7 @@
         <item name="android:statusBarColor">#020617</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">#020617</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
@@ -24,6 +25,7 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
         <item name="windowSplashScreenIconBackgroundColor">#020617</item>
+        <item name="android:windowSplashScreenIconSize">140dp</item>
     </style>
 
 </resources>
