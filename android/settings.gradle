@@ -1,5 +1,7 @@
-include ':app'
-include ':capacitor-cordova-android-plugins'
-project(':capacitor-cordova-android-plugins').projectDir = new File('./capacitor-cordova-android-plugins/')
+rootProject.name = 'GoNative'
+System.setProperty("user.dir", rootProject.projectDir.toString())
 
-apply from: 'capacitor.settings.gradle'
+// Apply plugin discovery for local plugins
+apply from: file("./plugins.gradle"); applyModulesSettingsGradle(settings)
+
+include ':app'
