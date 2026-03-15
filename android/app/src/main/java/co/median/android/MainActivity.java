@@ -1,4 +1,4 @@
-package com.v7x.app;
+package co.median.android;
 
 import android.Manifest;
 import android.animation.Animator;
