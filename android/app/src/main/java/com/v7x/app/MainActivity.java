@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.getcapacitor.BridgeActivity;
 
@@ -19,6 +20,7 @@ public class MainActivity extends BridgeActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // طلب إذن الإشعارات لأندرويد 13+
         if (android.os.Build.VERSION.SDK_INT >= 33) {
             requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
         }
@@ -27,6 +29,13 @@ public class MainActivity extends BridgeActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#020617")); // لون الخلفية الداكن
+        window.setNavigationBarColor(Color.parseColor("#020617")); // تلوين شريط الأزرار السفلي
+
+        // --- [ السحر هنا لإظهار الأزرار السوداء ] ---
+        View decorView = window.getDecorView();
+        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, decorView);
+        controller.setAppearanceLightNavigationBars(false); // تجعل أزرار التنقل بيضاء/فاتحة
+        controller.setAppearanceLightStatusBars(false); // تجعل أيقونات الساعة والبطارية بيضاء
         
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
     }
