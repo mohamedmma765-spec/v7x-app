@@ -7,6 +7,7 @@
     "url": "https://v7x.fun/user/login",
     "overrideUserAgent": "V7X_Android_App_Mobile",
     "allowNavigation": [
+      "*",
       "v7x.fun",
       "*.v7x.fun"
     ],
@@ -38,6 +39,10 @@
     },
     "PushNotifications": {
       "presentationOptions": ["badge", "sound", "alert"]
+    },
+    "NavigationBar": {
+      "isVisible": true,
+      "backgroundColor": "#020617"
     }
   }
 }
