@@ -9,11 +9,11 @@ configurations.all {
 
 android {
     namespace "com.v7x.app"
-    compileSdk rootProject.ext.compileSdkVersion
+    compileSdk 34
     defaultConfig {
         applicationId "com.v7x.app"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 22
+        targetSdkVersion 34
         
         versionCode 3
         versionName "1.2.0"
